@@ -4,16 +4,26 @@ import math
 
 
 def recipe_batches(recipe, ingredients):
+    # Initialize a variable to hold number of batches so far
     batch_count = 0
+
+    # Keep the Loop running and exit on a return statement
     while True:
+        # Loop through the keys in the recipe dictionary
         for i in recipe.keys():
+            # Check if the current key in recipe is also in the ingredients dictionary
             if i in ingredients:
+                # Check if the value of the current ingredients is less than the value of the current recipe
                 if ingredients[i] < recipe[i]:
+                    # End the loop and return the current batch_count
                     return batch_count
                 else:
-                    ingredients[i] = ingredients[i] - recipe[i]
+                    # Remove the amount of the recipe from the current ingredients
+                    ingredients[i] -= recipe[i]
             else:
+                # Return the batch count if the current recipe is not in ingredients
                 return batch_count
+        # After the cycle for each item less the amount of recipe, increment the batch count by 1
         batch_count += 1
 
 
