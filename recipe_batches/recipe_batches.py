@@ -26,6 +26,29 @@ def recipe_batches(recipe, ingredients):
         # After the cycle for each item less the amount of recipe, increment the batch count by 1
         batch_count += 1
 
+# A little more efficent solution 
+def recipe_batches_e(recipe, ingredients):
+    # define a variable to hold the number of batches
+    # we have to loop through and subtract recipe from ingredient
+    # check if the recipe and ingredients have same properties
+    batches = 0
+
+    # if the recipe and the ingredients don't match, end the loop
+    if (ingredients.keys() != recipe.keys()):
+        return batches
+
+    # keep the subtraction loop running till we can subtract anymore
+    while True:
+        # for each ingredient remove the amount of ingredient consumed
+        for item in ingredients:
+            # quantity of ingredient has to be greater than the recipe
+            if (ingredients[item] >= recipe[item]):
+                ingredients[item] = ingredients[item] - recipe[item]
+            else:
+                return batches
+
+        batches += 1
+
 
 if __name__ == '__main__':
     # Change the entries of these dictionaries to test
